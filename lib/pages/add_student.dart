@@ -11,28 +11,35 @@ class _AddStudentState extends State<AddStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        const TextField(
-          decoration: InputDecoration(
-            hintText: 'Ingresa el nombre',
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            const TextField(
+              decoration: InputDecoration(
+                hintText: 'Ingresa el nombre',
+              ),
+            ),
+            const SizedBox(height: 10),
+            const TextField(
+              decoration: InputDecoration(
+                hintText: 'Ingresa el correo',
+              ),
+            ),
+            const SizedBox(height: 10),
+            const TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: 'Ingresa la contraseña',
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text("Registrar"),
+            ),
+          ],
         ),
-        const SizedBox(height: 10),
-        const TextField(
-          decoration: InputDecoration(
-            hintText: 'Ingresa el correo',
-          ),
-        ),
-        const SizedBox(height: 10),
-        const TextField(
-          obscureText: true,
-          decoration: InputDecoration(
-            hintText: 'Ingresa la contraseña',
-          ),
-        ),
-        ElevatedButton(onPressed: () {}, child: const Text("Registrar"))
-      ],
-    ));
+      ),
+    );
   }
 }
