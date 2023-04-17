@@ -4,6 +4,7 @@ import 'firebase_options.dart';
 //Pages
 import 'package:app_biblioteca_firebase_v2/pages/home.dart';
 import 'package:app_biblioteca_firebase_v2/pages/add_student.dart';
+import 'package:app_biblioteca_firebase_v2/pages/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,10 +21,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      initialRoute: '/addStudent',
+      initialRoute: '/login',
       routes: {
-        '/': (context) => const Home(),
+        '/login': (context) => const Login(),
         '/addStudent': (context) => const AddStudent(),
+        '/home': (context) => const Home(),
       },
     );
   }
