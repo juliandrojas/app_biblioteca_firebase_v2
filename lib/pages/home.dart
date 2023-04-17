@@ -13,9 +13,28 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: getBooks(),
+        future: obtenerLibros(),
         builder: (context, snapshot) {
-          return const Text("Hello World");
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data?.length,
+              itemBuilder: ((context, index) {
+                return ListTile(
+                  title: Text(snapshot.data?[index]['titulo']),
+                  subtitle: Text(snapshot.data?[index]['autor']),
+                  trailing: ElevatedButton(
+                      onPressed: () {
+                        print(snapshot.data?[index]['titulo']);
+                      },
+                      child: const Text("Reservar")),
+                );
+              }),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
         },
       ),
     );
