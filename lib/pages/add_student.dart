@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:app_biblioteca_firebase_v2/services/firebase_services.dart';
 
 class AddStudent extends StatefulWidget {
   const AddStudent({super.key});
@@ -44,10 +45,9 @@ class _AddStudentState extends State<AddStudent> {
               ),
             ),
             ElevatedButton(
-              onPressed: () {
-                print(nombreController.text);
-                print(correoController.text);
-                print(contrasenaController.text);
+              onPressed: () async {
+                await anadirEstudiante(nombreController.text,
+                    correoController.text, contrasenaController.text);
               },
               child: const Text("Registrar"),
             ),
