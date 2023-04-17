@@ -18,6 +18,19 @@ class _AddStudentState extends State<AddStudent> {
             hintText: 'Ingresa el nombre',
           ),
         ),
+        const SizedBox(height: 10),
+        const TextField(
+          decoration: InputDecoration(
+            hintText: 'Ingresa el correo',
+          ),
+        ),
+        const SizedBox(height: 10),
+        const TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+            hintText: 'Ingresa la contraseña',
+          ),
+        ),
         ElevatedButton(onPressed: () {}, child: const Text("Registrar"))
       ],
     ));
