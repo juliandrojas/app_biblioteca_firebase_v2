@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 FirebaseFirestore db = FirebaseFirestore.instance;
 
 //Función para traer los datos (consulta a la BD)
-Future<List> obtenerLibros() async {
+Future<List> getBooks() async {
   List libros = [];
   //Referencia a la colección (La colección se llama libros)
   CollectionReference collectionReferenceLibros = db.collection('libros');
