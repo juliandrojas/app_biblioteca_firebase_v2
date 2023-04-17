@@ -8,6 +8,10 @@ class AddStudent extends StatefulWidget {
 }
 
 class _AddStudentState extends State<AddStudent> {
+  //Controllers
+  TextEditingController nombreController = TextEditingController(text: "");
+  TextEditingController correoController = TextEditingController(text: "");
+  TextEditingController contrasenaController = TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,21 +19,24 @@ class _AddStudentState extends State<AddStudent> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: nombreController,
+              decoration: const InputDecoration(
                 hintText: 'Ingresa el nombre',
               ),
             ),
             const SizedBox(height: 10),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: correoController,
+              decoration: const InputDecoration(
                 hintText: 'Ingresa el correo',
               ),
             ),
             const SizedBox(height: 10),
-            const TextField(
+            TextField(
+              controller: contrasenaController,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Ingresa la contraseña',
               ),
             ),
