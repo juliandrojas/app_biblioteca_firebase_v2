@@ -44,12 +44,16 @@ class _AddStudentState extends State<AddStudent> {
                 hintText: 'Ingresa la contraseña',
               ),
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () async {
                 await anadirEstudiante(nombreController.text,
-                    correoController.text, contrasenaController.text);
+                        correoController.text, contrasenaController.text)
+                    .then((_) {
+                  Navigator.pop(context);
+                });
               },
-              child: const Text("Registrar"),
+              child: const Text("Registrar Estudiante"),
             ),
           ],
         ),
