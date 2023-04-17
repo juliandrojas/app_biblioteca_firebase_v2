@@ -15,6 +15,9 @@ class _AddStudentState extends State<AddStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Add Student"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
@@ -41,7 +44,11 @@ class _AddStudentState extends State<AddStudent> {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                print(nombreController.text);
+                print(correoController.text);
+                print(contrasenaController.text);
+              },
               child: const Text("Registrar"),
             ),
           ],
