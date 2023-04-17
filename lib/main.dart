@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+//Pages
+import 'package:app_biblioteca_firebase_v2/pages/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,9 +23,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Material App Bar"),
         ),
-        body: const Center(
-          child: Text('Hello World!'),
-        ),
+        body: const Home(),
       ),
     );
   }
