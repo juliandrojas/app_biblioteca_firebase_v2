@@ -29,4 +29,11 @@ Future<List> obtenerEstudiantes() async {
   });
   return estudiantes;
 }
-//Guardamos los estudiantes
+
+//Guardamos en la base de datos los estudiantes que registramos
+Future<void> anadirEstudiante(
+    String nombre, String correo, String contrasena) async {
+  await db
+      .collection("estudiantes")
+      .add({"nombre": nombre, "correo": correo, "contrasena": contrasena});
+}
