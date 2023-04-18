@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const Login(),
         '/addStudent': (context) => const AddStudent(),
         '/home': (context) => const Home(),
-        '/formulario_prestamo': (context) => const FormularioPrestamo(),
+        '/formulario_prestamo': (context) => const FormularioPrestamo(),  
       },
     );
   }

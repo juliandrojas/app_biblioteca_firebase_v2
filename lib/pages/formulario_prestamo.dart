@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:app_biblioteca_firebase_v2/services/firebase_services.dart';
 
 class FormularioPrestamo extends StatefulWidget {
   const FormularioPrestamo({super.key});
@@ -8,49 +9,53 @@ class FormularioPrestamo extends StatefulWidget {
 }
 
 class _FormularioPrestamoState extends State<FormularioPrestamo> {
+  //Controllers
+  TextEditingController nombreController = TextEditingController(text: "");
+  TextEditingController correoController = TextEditingController(text: "");
+  TextEditingController contrasenaController = TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: const Text("Add Student"),
       ),
-      body: Center(
-        child: Card(
-          child: Container(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Correo electrónico',
-                  ),
-                ),
-                const SizedBox(height: 16.0),
-                TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Contraseña',
-                  ),
-                ),
-                const SizedBox(height: 16.0),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/home');
-                  },
-                  child: const Text('Iniciar sesión'),
-                ),
-                const SizedBox(height: 16.0),
-                ElevatedButton(
-                  onPressed: () async {
-                    await Navigator.pushNamed(context, '/addStudent');
-                    setState(() {});
-                  },
-                  child: const Text('Registrarse'),
-                ),
-              ],
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: nombreController,
+              decoration: const InputDecoration(
+                hintText: 'Ingresa el nombre',
+              ),
             ),
-          ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: correoController,
+              decoration: const InputDecoration(
+                hintText: 'Ingresa el correo',
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: contrasenaController,
+              obscureText: true,
+              decoration: const InputDecoration(
+                hintText: 'Ingresa la contraseña',
+              ),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () async {
+                await anadirEstudiante(nombreController.text,
+                        correoController.text, contrasenaController.text)
+                    .then((_) {
+                  Navigator.pop(context);
+                });
+              },
+              child: const Text("Registrar Estudiante"),
+            ),
+          ],
         ),
       ),
     );
