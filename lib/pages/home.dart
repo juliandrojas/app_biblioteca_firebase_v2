@@ -1,5 +1,8 @@
+import 'package:app_biblioteca_firebase_v2/pages/lista_libros_disponibles.dart';
+import 'package:app_biblioteca_firebase_v2/pages/devolver_libro.dart';
 import 'package:flutter/material.dart';
-import 'package:app_biblioteca_firebase_v2/services/firebase_services.dart';
+
+const Color greenUTS = Color.fromRGBO(203, 212, 36, 1);
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -9,36 +12,34 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int _paginaActual = 0;
+  final List<Widget> _paginas = [
+    const ListaLibrosDisponibles(),
+    const DevolverLibro(),
+  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Home"),
-      ),
-      body: FutureBuilder(
-        future: obtenerLibros(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data?.length,
-              itemBuilder: ((context, index) {
-                return ListTile(
-                  title: Text(snapshot.data?[index]['titulo']),
-                  subtitle: Text(snapshot.data?[index]['autor']),
-                  trailing: ElevatedButton(
-                      onPressed: () {
-                        print(snapshot.data?[index]['titulo']);
-                      },
-                      child: const Text("Reservar")),
-                );
-              }),
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        //Si tenemos dos elementos
+        //body: _paginaActual == 0 ? const PrestarLibro() : const DevolverLibro(),
+        body: _paginas[_paginaActual],
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            setState(() {
+              _paginaActual = index;
+            });
+          },
+          currentIndex: _paginaActual,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.arrow_upward_outlined),
+                label: 'Prestar libro'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.arrow_downward), label: 'Devolver libro'),
+          ],
+        ),
       ),
     );
   }
