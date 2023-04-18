@@ -27,7 +27,8 @@ class _ListaLibrosDisponiblesState extends State<ListaLibrosDisponibles> {
                   subtitle: Text(snapshot.data?[index]['autor']),
                   trailing: ElevatedButton(
                       onPressed: () {
-                        print(snapshot.data?[index]['titulo']);
+                        //print(snapshot.data?[index]['titulo']);
+                        Navigator.pushNamed(context, "/formulario_prestamo");
                       },
                       child: const Text("Reservar")),
                 );
