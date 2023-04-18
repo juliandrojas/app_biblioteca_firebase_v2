@@ -13,6 +13,10 @@ class _FormularioPrestamoState extends State<FormularioPrestamo> {
   TextEditingController nombreController = TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
+    //Mapeamos los argumentos que vienen de lista_libros_disponibles.dart
+    final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    //Asignamos los argumentos que vienen de lista_libros_disponibles.dart a la variable nombreController
+    nombreController.text = arguments['poseedor'];
     return Scaffold(
       appBar: AppBar(
         title: const Text("Formulario de préstamo de libros"),
@@ -28,7 +32,9 @@ class _FormularioPrestamoState extends State<FormularioPrestamo> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  
+                },
                 child: const Text("Prestar"),
               ),
             ]),
