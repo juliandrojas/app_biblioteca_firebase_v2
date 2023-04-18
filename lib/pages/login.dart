@@ -19,6 +19,13 @@ class _LoginState extends State<Login> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(mainAxisSize: MainAxisSize.min, children: [
+              const Text(
+                "Ingreso",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               TextFormField(
                 decoration: const InputDecoration(
                   labelText: 'Correo electrónico',
