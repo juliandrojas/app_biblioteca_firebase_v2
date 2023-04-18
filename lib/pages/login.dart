@@ -42,8 +42,9 @@ class _LoginState extends State<Login> {
                 ),
                 const SizedBox(height: 16.0),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/addStudent');
+                  onPressed: () async {
+                    await Navigator.pushNamed(context, '/addStudent');
+                    setState(() {});
                   },
                   child: const Text('Registrarse'),
                 ),
