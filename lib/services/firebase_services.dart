@@ -37,3 +37,8 @@ Future<void> anadirEstudiante(
       .collection("estudiantes")
       .add({"nombre": nombre, "correo": correo, "contrasena": contrasena});
 }
+
+//Actualizar poseedor del libro a prestar
+/*Future<void> prestarLibro() {
+  
+}*/
