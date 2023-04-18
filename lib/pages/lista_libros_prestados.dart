@@ -27,7 +27,8 @@ class _ListaLibrosPrestadosState extends State<ListaLibrosPrestados> {
                   subtitle: Text(snapshot.data?[index]['autor']),
                   trailing: ElevatedButton(
                       onPressed: () {
-                        print(snapshot.data?[index]['titulo']);
+                        //print(snapshot.data?[index]['titulo']);
+                        Navigator.pushNamed(context, '/prestar');
                       },
                       child: const Text("Devolver")),
                 );
