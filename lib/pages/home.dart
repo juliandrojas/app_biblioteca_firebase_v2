@@ -1,5 +1,3 @@
-import 'package:app_biblioteca_firebase_v2/pages/lista_libros_disponibles.dart';
-import 'package:app_biblioteca_firebase_v2/pages/lista_libros_prestados.dart';
 import 'package:flutter/material.dart';
 
 const Color greenUTS = Color.fromRGBO(203, 212, 36, 1);
@@ -12,33 +10,41 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _paginaActual = 0;
-  final List<Widget> _paginas = [
-    const ListaLibrosDisponibles(),
-    const ListaLibrosPrestados(),
-  ];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        //Si tenemos dos elementos
-        //body: _paginaActual == 0 ? const PrestarLibro() : const DevolverLibro(),
-        body: _paginas[_paginaActual],
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: (index) {
-            setState(() {
-              _paginaActual = index;
-            });
-          },
-          currentIndex: _paginaActual,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.arrow_upward_outlined),
-                label: 'Prestar libro'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.arrow_downward), label: 'Devolver libro'),
-          ],
+        appBar: AppBar(
+          title: const Text("Home"),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(200, 50), // Ajusta el tamaño aquí
+                ),
+                onPressed: () {
+                  // Acción al presionar "Prestar Libro"
+                  Navigator.pushNamed(context, '/libros_disponibles');
+                },
+                child: const Text('Prestar Libro'),
+              ),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(200, 50), // Ajusta el tamaño aquí
+                ),
+                onPressed: () {
+                  // Acción al presionar "Devolver Libro"
+                  Navigator.pushNamed(context, '/libros_prestados');
+                },
+                child: const Text('Devolver Libro'),
+              ),
+            ],
+          ),
         ),
       ),
     );
