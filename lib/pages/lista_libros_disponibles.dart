@@ -29,7 +29,10 @@ class _ListaLibrosDisponiblesState extends State<ListaLibrosDisponibles> {
                       onPressed: () async {
                         //print(snapshot.data?[index]['titulo']);
                         await Navigator.pushNamed(
-                            context, "/formulario_prestamo");
+                            context, "/formulario_prestamo",
+                            arguments: {
+                              "poseedor": snapshot.data?[index]['poseedor'],
+                            });
                       },
                       child: const Text("Reservar")),
                 );
