@@ -19,43 +19,64 @@ class _AddStudentState extends State<AddStudent> {
       appBar: AppBar(
         title: const Text("Add Student"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: nombreController,
-              decoration: const InputDecoration(
-                hintText: 'Ingresa el nombre',
-              ),
+      body: Center(
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      const Text(
+                        "Añadir estudiante",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextField(
+                        controller: nombreController,
+                        decoration: const InputDecoration(
+                          hintText: 'Ingresa el nombre',
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextField(
+                        controller: correoController,
+                        decoration: const InputDecoration(
+                          hintText: 'Ingresa el correo',
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextField(
+                        controller: contrasenaController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          hintText: 'Ingresa la contraseña',
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await anadirEstudiante(
+                                  nombreController.text,
+                                  correoController.text,
+                                  contrasenaController.text)
+                              .then((_) {
+                            Navigator.pop(context);
+                          });
+                        },
+                        child: const Text("Registrar Estudiante"),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: correoController,
-              decoration: const InputDecoration(
-                hintText: 'Ingresa el correo',
-              ),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: contrasenaController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                hintText: 'Ingresa la contraseña',
-              ),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () async {
-                await anadirEstudiante(nombreController.text,
-                        correoController.text, contrasenaController.text)
-                    .then((_) {
-                  Navigator.pop(context);
-                });
-              },
-              child: const Text("Registrar Estudiante"),
-            ),
-          ],
+          ),
         ),
       ),
     );
