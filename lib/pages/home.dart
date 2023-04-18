@@ -1,5 +1,5 @@
 import 'package:app_biblioteca_firebase_v2/pages/lista_libros_disponibles.dart';
-import 'package:app_biblioteca_firebase_v2/pages/devolver_libro.dart';
+import 'package:app_biblioteca_firebase_v2/pages/lista_libros_prestados.dart';
 import 'package:flutter/material.dart';
 
 const Color greenUTS = Color.fromRGBO(203, 212, 36, 1);
@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
   int _paginaActual = 0;
   final List<Widget> _paginas = [
     const ListaLibrosDisponibles(),
-    const DevolverLibro(),
+    const ListaLibrosPrestados(),
   ];
   @override
   Widget build(BuildContext context) {
