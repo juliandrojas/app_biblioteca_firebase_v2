@@ -5,6 +5,7 @@ import 'firebase_options.dart';
 import 'package:app_biblioteca_firebase_v2/pages/home.dart';
 import 'package:app_biblioteca_firebase_v2/pages/add_student.dart';
 import 'package:app_biblioteca_firebase_v2/pages/login.dart';
+import 'package:app_biblioteca_firebase_v2/pages/lista_libros_disponibles.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,12 +21,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Material App',
-      initialRoute: '/login',
+      initialRoute: '/home',
       routes: {
         '/login': (context) => const Login(),
         '/addStudent': (context) => const AddStudent(),
         '/home': (context) => const Home(),
+        '/listaLibros': (context) => const ListaLibrosDisponibles(),
       },
     );
   }
