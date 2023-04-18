@@ -11,51 +11,28 @@ class FormularioPrestamo extends StatefulWidget {
 class _FormularioPrestamoState extends State<FormularioPrestamo> {
   //Controllers
   TextEditingController nombreController = TextEditingController(text: "");
-  TextEditingController correoController = TextEditingController(text: "");
-  TextEditingController contrasenaController = TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Student"),
+        title: const Text("Formulario de préstamo de libros"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: nombreController,
-              decoration: const InputDecoration(
-                hintText: 'Ingresa el nombre',
+      body: Center(
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              TextField(
+                controller: nombreController,
+                decoration: InputDecoration(labelText: "Nombre del estudiante"),
               ),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: correoController,
-              decoration: const InputDecoration(
-                hintText: 'Ingresa el correo',
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text("Prestar"),
               ),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: contrasenaController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                hintText: 'Ingresa la contraseña',
-              ),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () async {
-                await anadirEstudiante(nombreController.text,
-                        correoController.text, contrasenaController.text)
-                    .then((_) {
-                  Navigator.pop(context);
-                });
-              },
-              child: const Text("Registrar Estudiante"),
-            ),
-          ],
+            ]),
+          ),
         ),
       ),
     );
