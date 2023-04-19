@@ -28,12 +28,13 @@ class _FormularioPrestamoState extends State<FormularioPrestamo> {
             child: Column(mainAxisSize: MainAxisSize.min, children: [
               TextField(
                 controller: nombreController,
-                decoration: InputDecoration(labelText: "Nombre del estudiante"),
+                decoration:
+                    const InputDecoration(labelText: "Nombre del estudiante"),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
-                  
+                  print(arguments['uid']); 
                 },
                 child: const Text("Prestar"),
               ),
