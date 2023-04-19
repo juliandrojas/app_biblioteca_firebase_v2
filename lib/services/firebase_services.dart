@@ -7,12 +7,27 @@ FirebaseFirestore db = FirebaseFirestore.instance;
 Future<List> obtenerLibros() async {
   //Lista que vamos a regresar
   List libros = [];
-  CollectionReference collectionReferenceLibros = db.collection('libros');
+  /*CollectionReference collectionReferenceLibros = db.collection('libros');
   QuerySnapshot queryLibros = await collectionReferenceLibros.get();
   //Iteramos los documentos
   queryLibros.docs.forEach((documento) {
     libros.add(documento.data());
-  });
+  });*/
+  QuerySnapshot querySnapshot = await db.collection('libros').get();
+  for (var doc in querySnapshot.docs) {
+    final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    final libro = {
+      "autor": data['autor'],
+      "categoria": data['categoria'],
+      "descripcion": data['descripcion'],
+      "editorial": data['editorial'],
+      "poseedor": data['poseedor'],
+      "titulo": data['titulo'],
+      "uid": doc.id,
+    };
+    libros.add(libro);
+  }
+
   return libros;
 }
 
