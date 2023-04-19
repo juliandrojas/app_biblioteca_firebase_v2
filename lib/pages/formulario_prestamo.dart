@@ -34,7 +34,12 @@ class _FormularioPrestamoState extends State<FormularioPrestamo> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
-                  print(arguments['uid']); 
+                  await actualizarPoseedor(
+                          arguments['uid'], nombreController.text)
+                      .then((value) {
+                    Navigator.pop(context);
+                  });
+                  //print(arguments['uid']);
                 },
                 child: const Text("Prestar"),
               ),
