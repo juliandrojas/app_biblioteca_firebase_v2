@@ -2,17 +2,31 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 //Instance of FirebaseFirestore
 FirebaseFirestore db = FirebaseFirestore.instance;
+//Función para verificar si el estudiante está registrado
+
+
+// Define una función que verifica si los valores del formulario están en la base de datos
+Future<bool> verificarEstudiante(String correo, String contrasena) async {
+  // Realiza una consulta a la base de datos
+  QuerySnapshot snapshot = await FirebaseFirestore.instance
+      .collection('estudiantes')
+      .where('correo', isEqualTo: correo)
+      .where('contrasena', isEqualTo: contrasena)
+      .get();
+
+  // Verifica si la consulta devuelve algún resultado
+  if (snapshot.docs.length == 1) {
+    return true; // Los valores del formulario están en la base de datos
+  } else {
+    return false; // Los valores del formulario no están en la base de datos
+  }
+}
+
 
 //Función para traer los datos de los libros (consulta a la BD)
 Future<List> obtenerLibros() async {
   //Lista que vamos a regresar
   List libros = [];
-  /*CollectionReference collectionReferenceLibros = db.collection('libros');
-  QuerySnapshot queryLibros = await collectionReferenceLibros.get();
-  //Iteramos los documentos
-  queryLibros.docs.forEach((documento) {
-    libros.add(documento.data());
-  });*/
   QuerySnapshot querySnapshot = await db.collection('libros').get();
   for (var doc in querySnapshot.docs) {
     final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
