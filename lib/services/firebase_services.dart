@@ -39,6 +39,6 @@ Future<void> anadirEstudiante(
 }
 
 //Actualizar poseedor del libro a prestar
-/*Future<void> prestarLibro() {
-  
-}*/
+Future<void> actualizarPoseedor(String uid, String newPoseedor) async {
+  await db.collection("libros").doc(uid).update({"poseedor": newPoseedor});
+}
