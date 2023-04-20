@@ -16,7 +16,7 @@ class _ListaLibrosDisponiblesState extends State<ListaLibrosDisponibles> {
         title: const Text("Lista de Libros Disponibles"),
       ),
       body: FutureBuilder(
-        future: obtenerLibros(),
+        future: obtenerLibrosDisponibles(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
