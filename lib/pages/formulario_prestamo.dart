@@ -34,7 +34,7 @@ class _FormularioPrestamoState extends State<FormularioPrestamo> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
-                  await actualizarPoseedor(
+                  await prestarLibro(
                           arguments['uid'], nombreController.text)
                       .then((value) {
                     Navigator.pop(context);

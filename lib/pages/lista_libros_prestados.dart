@@ -16,7 +16,7 @@ class _ListaLibrosPrestadosState extends State<ListaLibrosPrestados> {
         title: const Text("Lista de Libros Prestados"),
       ),
       body: FutureBuilder(
-        future: obtenerLibros(),
+        future: obtenerLibrosaPrestados(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
