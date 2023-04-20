@@ -20,6 +20,7 @@ Future<bool> verificarEstudiante(String correo, String contrasena) async {
     return false; // Los valores del formulario no están en la base de datos
   }
 }
+
 //Función para traer los datos de los estudiantes (consulta a la BD)
 Future<List> obtenerEstudiantes() async {
   //Lista que vamos a regresar
@@ -96,4 +97,3 @@ Future<void> prestarLibro(String uid, String newPoseedor) async {
 Future<void> devolverLibro(String uid) async {
   await db.collection("libros").doc(uid).update({"poseedor": null});
 }
-
