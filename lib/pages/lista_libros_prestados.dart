@@ -13,7 +13,7 @@ class _ListaLibrosPrestadosState extends State<ListaLibrosPrestados> {
   TextEditingController nombreController = TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
-    final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    //final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
     return Scaffold(
       appBar: AppBar(
@@ -31,8 +31,8 @@ class _ListaLibrosPrestadosState extends State<ListaLibrosPrestados> {
                   subtitle: Text(snapshot.data?[index]['autor']),
                   trailing: ElevatedButton(
                       onPressed: () {
-                        //print(snapshot.data?[index]['titulo']);
-                        devolverLibro(arguments['uid']);
+                        print(snapshot.data?[index]['titulo']);
+                        //devolverLibro(arguments['uid']);
                       },
                       child: const Text("Devolver")),
                 );
