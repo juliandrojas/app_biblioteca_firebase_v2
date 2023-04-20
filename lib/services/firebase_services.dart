@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 FirebaseFirestore db = FirebaseFirestore.instance;
 //Función para verificar si el estudiante está registrado
 
-
 // Define una función que verifica si los valores del formulario están en la base de datos
 Future<bool> verificarEstudiante(String correo, String contrasena) async {
   // Realiza una consulta a la base de datos
@@ -22,12 +21,35 @@ Future<bool> verificarEstudiante(String correo, String contrasena) async {
   }
 }
 
-
-//Función para traer los datos de los libros (consulta a la BD)
-Future<List> obtenerLibros() async {
+//Función para traer los datos de los libros prestados (consulta a la BD)
+Future<List> obtenerLibrosDisponibles() async {
   //Lista que vamos a regresar
   List libros = [];
-  QuerySnapshot querySnapshot = await db.collection('libros').get();
+  QuerySnapshot querySnapshot =
+      await db.collection('libros').where('poseedor', isEqualTo: '').get();
+  for (var doc in querySnapshot.docs) {
+    final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    final libro = {
+      "autor": data['autor'],
+      "categoria": data['categoria'],
+      "descripcion": data['descripcion'],
+      "editorial": data['editorial'],
+      "poseedor": data['poseedor'],
+      "titulo": data['titulo'],
+      "uid": doc.id,
+    };
+    libros.add(libro);
+  }
+
+  return libros;
+}
+
+//Función para traer los datos de los libros prestados (consulta a la BD)
+Future<List> obtenerLibrosaPrestados() async {
+  //Lista que vamos a regresar
+  List libros = [];
+  QuerySnapshot querySnapshot =
+      await db.collection('libros').where('poseedor', isEqualTo: '').get();
   for (var doc in querySnapshot.docs) {
     final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     final libro = {
@@ -68,6 +90,10 @@ Future<void> anadirEstudiante(
 }
 
 //Actualizar poseedor del libro a prestar
-Future<void> actualizarPoseedor(String uid, String newPoseedor) async {
+Future<void> prestarLibro(String uid, String newPoseedor) async {
   await db.collection("libros").doc(uid).update({"poseedor": newPoseedor});
+}
+
+Future<void> devolverLibro(String uid) async {
+  await db.collection("libros").doc(uid).update({"poseedor": null});
 }
