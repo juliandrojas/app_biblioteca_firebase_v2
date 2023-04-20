@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 //Instance of FirebaseFirestore
 FirebaseFirestore db = FirebaseFirestore.instance;
+//Parte estudiantes
 //Función para verificar si el estudiante está registrado
-
 // Define una función que verifica si los valores del formulario están en la base de datos
 Future<bool> verificarEstudiante(String correo, String contrasena) async {
   // Realiza una consulta a la base de datos
@@ -19,6 +19,27 @@ Future<bool> verificarEstudiante(String correo, String contrasena) async {
   } else {
     return false; // Los valores del formulario no están en la base de datos
   }
+}
+//Función para traer los datos de los estudiantes (consulta a la BD)
+Future<List> obtenerEstudiantes() async {
+  //Lista que vamos a regresar
+  List estudiantes = [];
+  CollectionReference collectionReferenceEstudiantes =
+      db.collection('estudiantes');
+  QuerySnapshot queryEstudiantes = await collectionReferenceEstudiantes.get();
+  //Iteramos los documentos
+  queryEstudiantes.docs.forEach((documento) {
+    estudiantes.add(documento.data());
+  });
+  return estudiantes;
+}
+
+//Guardamos en la base de datos los estudiantes que registramos
+Future<void> anadirEstudiante(
+    String nombre, String correo, String contrasena) async {
+  await db
+      .collection("estudiantes")
+      .add({"nombre": nombre, "correo": correo, "contrasena": contrasena});
 }
 
 //Función para traer los datos de los libros prestados (consulta a la BD)
@@ -49,7 +70,7 @@ Future<List> obtenerLibrosaPrestados() async {
   //Lista que vamos a regresar
   List libros = [];
   QuerySnapshot querySnapshot =
-      await db.collection('libros').where('poseedor', isEqualTo: '').get();
+      await db.collection('libros').where('poseedor', isNotEqualTo: '').get();
   for (var doc in querySnapshot.docs) {
     final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     final libro = {
@@ -67,28 +88,6 @@ Future<List> obtenerLibrosaPrestados() async {
   return libros;
 }
 
-//Función para traer los datos de los estudiantes (consulta a la BD)
-Future<List> obtenerEstudiantes() async {
-  //Lista que vamos a regresar
-  List estudiantes = [];
-  CollectionReference collectionReferenceEstudiantes =
-      db.collection('estudiantes');
-  QuerySnapshot queryEstudiantes = await collectionReferenceEstudiantes.get();
-  //Iteramos los documentos
-  queryEstudiantes.docs.forEach((documento) {
-    estudiantes.add(documento.data());
-  });
-  return estudiantes;
-}
-
-//Guardamos en la base de datos los estudiantes que registramos
-Future<void> anadirEstudiante(
-    String nombre, String correo, String contrasena) async {
-  await db
-      .collection("estudiantes")
-      .add({"nombre": nombre, "correo": correo, "contrasena": contrasena});
-}
-
 //Actualizar poseedor del libro a prestar
 Future<void> prestarLibro(String uid, String newPoseedor) async {
   await db.collection("libros").doc(uid).update({"poseedor": newPoseedor});
@@ -97,3 +96,4 @@ Future<void> prestarLibro(String uid, String newPoseedor) async {
 Future<void> devolverLibro(String uid) async {
   await db.collection("libros").doc(uid).update({"poseedor": null});
 }
+
