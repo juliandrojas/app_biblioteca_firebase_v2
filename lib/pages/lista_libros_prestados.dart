@@ -9,8 +9,12 @@ class ListaLibrosPrestados extends StatefulWidget {
 }
 
 class _ListaLibrosPrestadosState extends State<ListaLibrosPrestados> {
+  //Controllers
+  TextEditingController nombreController = TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
+    final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Lista de Libros Prestados"),
@@ -28,7 +32,7 @@ class _ListaLibrosPrestadosState extends State<ListaLibrosPrestados> {
                   trailing: ElevatedButton(
                       onPressed: () {
                         //print(snapshot.data?[index]['titulo']);
-                        Navigator.pushNamed(context, '/prestar');
+                        devolverLibro(arguments['uid']);
                       },
                       child: const Text("Devolver")),
                 );
