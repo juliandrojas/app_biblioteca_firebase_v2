@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
                 ),
                 onPressed: () {
                   // Acción al presionar "Devolver Libro"
-                  Navigator.pushNamed(context, '/libros_prestados');
+                  Navigator.pushNamed(context, '/lista_libros_prestados');
                 },
                 child: const Text('Devolver Libro'),
               ),
