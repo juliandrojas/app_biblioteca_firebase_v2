@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
                 ),
                 onPressed: () {
                   // Acción al presionar "Prestar Libro"
-                  Navigator.pushNamed(context, '/libros_disponibles');
+                  Navigator.pushNamed(context, '/lista_libros_disponibles');
                 },
                 child: const Text('Prestar Libro'),
               ),
