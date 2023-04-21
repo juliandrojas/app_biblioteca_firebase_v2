@@ -95,5 +95,5 @@ Future<void> prestarLibro(String uid, String newPoseedor) async {
 }
 
 Future<void> devolverLibro(String uid) async {
-  await db.collection("libros").doc(uid).update({"poseedor": null});
+  await db.collection("libros").doc(uid).update({"poseedor": ""});
 }
