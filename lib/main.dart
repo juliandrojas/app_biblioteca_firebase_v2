@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const Home(),
         '/lista_libros_disponibles': (context) => const ListaLibrosDisponibles(),
         '/formulario_prestamo': (context) => const FormularioPrestamo(),
-        '/libros_prestados': (context) => const ListaLibrosPrestados(),
+        '/lista_libros_prestados': (context) => const ListaLibrosPrestados(),
         '/formulario_devolucion': (context) => const FormularioDevolucion(),
       },
     );
