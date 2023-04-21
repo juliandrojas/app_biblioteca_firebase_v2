@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 //Pages
-import 'package:app_biblioteca_firebase_v2/views/login.dart';
-import 'package:app_biblioteca_firebase_v2/views/add_student.dart';
-import 'package:app_biblioteca_firebase_v2/views/home.dart';
-import 'package:app_biblioteca_firebase_v2/views/lista_libros_disponibles.dart';
-import 'package:app_biblioteca_firebase_v2/views/formulario_prestamo.dart';
-import 'package:app_biblioteca_firebase_v2/views/lista_libros_prestados.dart';
-import 'package:app_biblioteca_firebase_v2/views/formulario_devolucion.dart';
+import 'package:app_biblioteca_firebase_v2/pages/login.dart';
+import 'package:app_biblioteca_firebase_v2/pages/add_student.dart';
+import 'package:app_biblioteca_firebase_v2/pages/home.dart';
+import 'package:app_biblioteca_firebase_v2/pages/lista_libros_disponibles.dart';
+import 'package:app_biblioteca_firebase_v2/pages/formulario_prestamo.dart';
+import 'package:app_biblioteca_firebase_v2/pages/lista_libros_prestados.dart';
+import 'package:app_biblioteca_firebase_v2/pages/formulario_devolucion.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
