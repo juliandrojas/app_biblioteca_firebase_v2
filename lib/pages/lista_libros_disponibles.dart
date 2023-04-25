@@ -49,9 +49,12 @@ class _ListaLibrosDisponiblesState extends State<ListaLibrosDisponibles> {
                                 subtitle: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(snapshot.data?[index]['categoria']),
-                                    Text(snapshot.data?[index]['descripcion']),
-                                    Text(snapshot.data?[index]['editorial']),
+                                    Text("Categoría: " +
+                                        snapshot.data?[index]['categoria']),
+                                    Text("Descripción: " +
+                                        snapshot.data?[index]['descripcion']),
+                                    Text("Editorial: " +
+                                        snapshot.data?[index]['editorial']),
                                   ],
                                 ),
                               ),
