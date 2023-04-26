@@ -50,60 +50,39 @@ class _LoginAdminState extends State<LoginAdmin> {
                 onPressed: () async {
                   if (correoController.text.isNotEmpty &&
                       contrasenaController.text.isNotEmpty) {
-                    bool verificarEstudianteRegistrado =
-                        await verificarEstudiante(
-                            correoController.text, contrasenaController.text);
-                    //Si el estudiante está registrado, procedemos a ir a home
-                    if (verificarEstudianteRegistrado) {
-                      Navigator.pushNamed(context, '/home');
+                    bool esAdministrador = await verificarAdministrador(
+                        correoController.text, contrasenaController.text);
+                    if (esAdministrador == true) {
+                      // Si es administrador, se muestra un mensaje de éxito
+                      print("Logueado como administrador :D");
+                      Navigator.pushNamed(context, '/home_admin');
                     } else {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text("Error"),
-                              content: const Text(
-                                  'Regístrate para acceder a la app'),
-                              actions: [
-                                TextButton(
-                                  child: const Text("Cerrar"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          });
+                      // Si no es administrador, se muestra un mensaje de error
+                      print("No Logueado como administrador :(");
                     }
                   } else {
+                    // Si el correo o la contraseña están vacíos, se muestra un mensaje de error
                     showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text("Error"),
-                            content:
-                                const Text('Ingrese el correo y la contraseña'),
-                            actions: [
-                              TextButton(
-                                child: const Text("Cerrar"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        });
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text("Error"),
+                          content:
+                              const Text('Ingrese tu correo y contraseña'),
+                          actions: [
+                            TextButton(
+                              child: const Text("Cerrar"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   }
                 },
                 child: const Text('Iniciar sesión'),
-              ),
-              const SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: () async {
-                  await Navigator.pushNamed(context, '/addStudent');
-                  setState(() {});
-                },
-                child: const Text('Registrarse'),
               ),
             ]),
           ),
