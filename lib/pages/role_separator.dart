@@ -40,7 +40,7 @@ class _RoleSeparatorState extends State<RoleSeparator> {
                   minimumSize: const Size(200, 50), // Ajusta el tamaño aquí
                 ),
                 onPressed: () {
-                  // Acción al presionar "Devolver Libro"
+                  // Acción al presionar "Ingreso Estudianes"
                   Navigator.pushNamed(context, '/login_student');
                 },
                 child: const Text('Ingreso Estudiantes'),
