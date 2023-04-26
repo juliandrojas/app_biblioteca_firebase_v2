@@ -67,8 +67,7 @@ class _LoginAdminState extends State<LoginAdmin> {
                       builder: (BuildContext context) {
                         return AlertDialog(
                           title: const Text("Error"),
-                          content:
-                              const Text('Ingrese tu correo y contraseña'),
+                          content: const Text('Ingrese tu correo y contraseña'),
                           actions: [
                             TextButton(
                               child: const Text("Cerrar"),
