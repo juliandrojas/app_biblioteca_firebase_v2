@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 //Pages
+import 'package:app_biblioteca_firebase_v2/pages/role_separator.dart';
 import 'package:app_biblioteca_firebase_v2/pages/login.dart';
 import 'package:app_biblioteca_firebase_v2/pages/add_student.dart';
 import 'package:app_biblioteca_firebase_v2/pages/home.dart';
@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       initialRoute: '/login',
       routes: {
+        '/roleSeparator': (context) => const RoleSeparator(),
         '/login': (context) => const Login(),
         '/addStudent': (context) => const AddStudent(),
         '/home': (context) => const Home(),
