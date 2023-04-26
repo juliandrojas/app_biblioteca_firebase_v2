@@ -27,13 +27,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      initialRoute: '/login',
+      initialRoute: '/roleSeparator',
       routes: {
         '/roleSeparator': (context) => const RoleSeparator(),
         '/login': (context) => const Login(),
         '/addStudent': (context) => const AddStudent(),
         '/home': (context) => const Home(),
-        '/lista_libros_disponibles': (context) => const ListaLibrosDisponibles(),
+        '/lista_libros_disponibles': (context) =>
+            const ListaLibrosDisponibles(),
         '/formulario_prestamo': (context) => const FormularioPrestamo(),
         '/lista_libros_prestados': (context) => const ListaLibrosPrestados(),
         '/formulario_devolucion': (context) => const FormularioDevolucion(),
