@@ -15,7 +15,7 @@ class _HomeStudentState extends State<HomeStudent> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Home Admin"),
+          title: const Text("Home Student"),
         ),
         body: Center(
           child: Column(
@@ -27,7 +27,8 @@ class _HomeStudentState extends State<HomeStudent> {
                 ),
                 onPressed: () {
                   // Acción al presionar "Prestar Libro"
-                  Navigator.pushNamed(context, '/lista_libros_disponibles');
+                  Navigator.pushReplacementNamed(
+                      context, '/lista_libros_disponibles');
                 },
                 child: const Text('Prestar Libro'),
               ),
@@ -41,6 +42,17 @@ class _HomeStudentState extends State<HomeStudent> {
                   Navigator.pushNamed(context, '/lista_libros_prestados');
                 },
                 child: const Text('Devolver Libro'),
+              ),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(200, 50), // Ajusta el tamaño aquí
+                ),
+                onPressed: () {
+                  // Acción al presionar "Salir"
+                  Navigator.pop(context);
+                },
+                child: const Text('Salir'),
               ),
             ],
           ),
