@@ -2,25 +2,42 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 //Instance of FirebaseFirestore
 FirebaseFirestore db = FirebaseFirestore.instance;
-//Parte estudiantes
-//Función para verificar si el estudiante está registrado
-// Define una función que verifica si los valores del formulario están en la base de datos
-Future<bool> verificarEstudiante(String correo, String contrasena) async {
-  // Realiza una consulta a la base de datos
-  QuerySnapshot snapshot = await FirebaseFirestore.instance
-      .collection('estudiantes')
-      .where('correo', isEqualTo: correo)
-      .where('contrasena', isEqualTo: contrasena)
-      .get();
+//Parte Administrador
+// Define una función que verifica si el correo termina en correo.uts.edu.co
+Future<bool> verificarAdministrador(String correo, String contrasena) async {
+  // Verifica si el correo termina con "@correo.uts.edu.co"
+  if (correo.endsWith("@correo.uts.edu.co")) {
+    // Realiza una consulta a la base de datos
+    QuerySnapshot snapshot = await FirebaseFirestore.instance
+        .collection('usuarios')
+        .where('correo', isEqualTo: correo)
+        .where('contrasena', isEqualTo: contrasena)
+        .get();
 
-  // Verifica si la consulta devuelve algún resultado
-  if (snapshot.docs.length == 1) {
-    return true; // Los valores del formulario están en la base de datos
+    // Verifica si la consulta devuelve algún resultado
+    if (snapshot.docs.length == 1) {
+      return true; // Los valores del formulario están en la base de datos
+    } else {
+      return false; // Los valores del formulario no están en la base de datos
+    }
   } else {
-    return false; // Los valores del formulario no están en la base de datos
+    return false; // El correo no coincide con el formato esperado
   }
 }
-
+//Guardamos en la base de datos los estudiantes que registramos
+Future<void> anadirLibro(
+    String titulo, String autor, String editorial, String categoria, String descripcion, String poseedor) async {
+  await db
+      .collection("libros")
+      .add({
+        "titulo": titulo, 
+        "autor": autor, 
+        "editorial": editorial,
+        "categoria": categoria, 
+        "descripcion": descripcion,
+        "poseedor": ""});
+}
+//Parte estudiantes
 //Función para traer los datos de los estudiantes (consulta a la BD)
 Future<List> obtenerEstudiantes() async {
   //Lista que vamos a regresar
