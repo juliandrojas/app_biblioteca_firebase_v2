@@ -1,9 +1,10 @@
+import 'package:app_biblioteca_firebase_v2/pages/login_student.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 //Pages
 import 'package:app_biblioteca_firebase_v2/pages/role_separator.dart';
-import 'package:app_biblioteca_firebase_v2/pages/login.dart';
+import 'package:app_biblioteca_firebase_v2/pages/login_admin.dart';
 import 'package:app_biblioteca_firebase_v2/pages/add_student.dart';
 import 'package:app_biblioteca_firebase_v2/pages/home.dart';
 import 'package:app_biblioteca_firebase_v2/pages/lista_libros_disponibles.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/roleSeparator',
       routes: {
         '/roleSeparator': (context) => const RoleSeparator(),
-        '/login': (context) => const Login(),
+        '/login_admin': (context) => const LoginAdmin(),
+        '/login_student': (context) => const LoginStudent(),
         '/addStudent': (context) => const AddStudent(),
         '/home': (context) => const Home(),
         '/lista_libros_disponibles': (context) =>
